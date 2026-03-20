@@ -14,9 +14,9 @@ export default async function Home() {
         <Search />
       </header>
 
-      <div>
+      <section>
         <UserTasksGrid tasks={userTasks} />
-      </div>
+      </section>
     </div>
   );
 }
