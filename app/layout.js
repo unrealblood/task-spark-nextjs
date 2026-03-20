@@ -1,3 +1,4 @@
+import Header from "./components/header/Header";
 import "./globals.css";
 
 export const metadata = {
@@ -10,7 +11,13 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+        <body>
+          <div className="flex justify-start items-start">
+            <Header />
+
+            {children}
+          </div>
+        </body>
     </html>
   );
 }
