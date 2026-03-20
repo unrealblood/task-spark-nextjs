@@ -1,3 +1,5 @@
+import AddTaskForm from "../components/add-task/AddTaskForm";
+
 export default async function AddTask() {
     return (
         <div className="min-h-screen border-l border-gray-200 w-full">
@@ -7,7 +9,9 @@ export default async function AddTask() {
                 </h1>
             </header>
 
-            
+            <section>
+                <AddTaskForm />
+            </section>
         </div>
     );
 }
