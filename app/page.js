@@ -1,6 +1,9 @@
 import Search from "./components/home/Search";
+import UserTasksGrid from "./components/home/UserTasksGrid";
 
 export default async function Home() {
+  const userTasks = [];
+
   return (
     <div className="min-h-screen border-l border-gray-200 w-full">
       <header className="flex justify-between items-center border-b border-gray-200 py-4 px-8">
@@ -10,6 +13,10 @@ export default async function Home() {
 
         <Search />
       </header>
+
+      <div>
+        <UserTasksGrid tasks={userTasks} />
+      </div>
     </div>
   );
 }
