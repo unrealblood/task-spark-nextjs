@@ -20,10 +20,6 @@ export async function addTaskAction(prevState, formData) {
     }
 
     if(errors.length === 0) {
-        console.log(title);
-        console.log(description);
-        console.log(priority);
-
         return { success: true, errors, message: "Task added successfully." };
     }
 

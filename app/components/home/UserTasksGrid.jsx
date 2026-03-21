@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import UserTaskItem from "./UserTaskItem";
 
-export default async function UserTasksGrid({tasks}) {
+export default function UserTasksGrid() {
+    const tasks = useSelector(state => state.tasks.tasks);
+    console.log(tasks);
+
     return (
         <div>
             {

@@ -1,4 +1,4 @@
-import AddTaskForm from "../components/add-task/AddTaskForm";
+import AddTaskProvider from "../components/add-task/AddTaskProvider";
 
 export default async function AddTask() {
     return (
@@ -9,9 +9,7 @@ export default async function AddTask() {
                 </h1>
             </header>
 
-            <section>
-                <AddTaskForm />
-            </section>
+            <AddTaskProvider />
         </div>
     );
 }

@@ -1,4 +1,4 @@
-export default async function UserTaskItem() {
+export default function UserTaskItem() {
     return (
         <div>
             Task item 0.

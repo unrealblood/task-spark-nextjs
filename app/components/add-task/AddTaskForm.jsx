@@ -1,14 +1,31 @@
 "use client";
 
 import { addTaskAction } from "@/actions/task";
-import { useActionState, useState } from "react";
+import { addTask } from "@/app/redux/slices/taskSlice";
+import { useActionState, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function AddTaskForm() {
     const [state, formAction, isPending] = useActionState(addTaskAction, {success: false, errors: [], message: ""});
 
+    const dispatch = useDispatch();
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("Normal");
+
+    useEffect(() => {
+        if(state.success) {
+            dispatch(addTask({
+                id: 0,
+                title,
+                description,
+                priority,
+                completed: false,
+                date: Date.now()
+            }));
+        }
+    }, [state]);
 
     return (
         <div className="bg-slate-100 m-8 w-250 p-8 rounded-lg">
