@@ -1,5 +1,5 @@
 import Link from "next/link";
-import HeaderClientComponent from "./HeaderClientComponent";
+import HeaderProvider from "./HeaderProvider";
 
 export default async function Header() {
     return (
@@ -7,8 +7,8 @@ export default async function Header() {
             <h1 className="pr-24 pl-4 py-4 text-3xl font-bold shrink-0">
                 <Link href="/">Task Spark</Link>
             </h1>
-
-            <HeaderClientComponent />
+            
+            <HeaderProvider />
         </header>
     );
 }

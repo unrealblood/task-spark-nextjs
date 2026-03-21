@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import HeaderAuthNavItems from "./HeaderAuthNavItems";
 import HeaderSettings from "./HeaderSettings";
 import HeaderUnauthNavItems from "./HeaderUnauthNavItems";
 
 export default function HeaderClientComponent() {
-    const [isAuth, setIsAuth] = useState(true);
+    const isAuth = useSelector(state => state.auth.isAuthenticated);
 
     return (
         <>
