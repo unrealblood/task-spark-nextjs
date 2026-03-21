@@ -1,15 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { addTaskAction } from "@/actions/task";
+import { useActionState, useState } from "react";
 
 export default function AddTaskForm() {
+    const [state, formAction, isPending] = useActionState(addTaskAction, {success: false, errors: [], message: ""});
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("Normal");
 
     return (
         <div className="bg-slate-100 m-8 w-250 p-8 rounded-lg">
-            <form>
+            <form action={formAction}>
                 <label htmlFor="inputTitle" />
                 <input id="inputTitle" type="text" placeholder="What needs to be done?" className="text-3xl p-4 w-full bg-gray-200 rounded-lg" name="title" onChange={(e) => setTitle(e.target.value)} value={title} />
 
@@ -40,7 +43,17 @@ export default function AddTaskForm() {
                 <div className="mt-8 text-right space-x-8">
                     <button type="button" className="hover:bg-gray-200 px-4 py-3 cursor-pointer rounded-lg">Cancel</button>
 
-                    <button type="submit" className="hover:bg-blue-700 bg-blue-500 text-white px-4 py-3 cursor-pointer rounded-lg">Create Task</button>
+                    <button type="submit" className={`${isPending ? `bg-gray-200 text-black` : `bg-blue-500 text-white`} px-4 py-3 cursor-pointer rounded-lg`}>Create Task</button>
+                </div>
+
+                {state.errors.length > 0 && state.errors.map((error, index) => (
+                    <div key={index} className="text-center">
+                        <p className="text-red-500">{error}</p>
+                    </div>
+                ))}
+
+                <div>
+                    {state.message !== "" && <p className="text-green-500 mt-8 text-center">{state.message}</p>}
                 </div>
             </form>
         </div>
