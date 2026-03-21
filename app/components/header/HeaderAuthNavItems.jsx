@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function HeaderNavItems() {
+export default function HeaderAuthNavItems() {
     const pathName = usePathname();
 
     return (

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import HeaderNavItems from "./HeaderNavItems";
-import HeaderSettings from "./HeaderSettings";
+import HeaderClientComponent from "./HeaderClientComponent";
 
 export default async function Header() {
     return (
@@ -9,8 +8,7 @@ export default async function Header() {
                 <Link href="/">Task Spark</Link>
             </h1>
 
-            <HeaderNavItems />
-            <HeaderSettings />
+            <HeaderClientComponent />
         </header>
     );
 }
