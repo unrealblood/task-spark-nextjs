@@ -44,5 +44,5 @@ export default function AddTaskForm() {
                 </div>
             </form>
         </div>
-    )
+    );
 }
