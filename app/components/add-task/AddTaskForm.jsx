@@ -6,7 +6,6 @@ export default function AddTaskForm() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("Normal");
-    const [completed, setCompleted] = useState(false);
 
     return (
         <div className="bg-slate-100 m-8 w-250 p-8 rounded-lg">
@@ -21,15 +20,15 @@ export default function AddTaskForm() {
 
                 <div className="mt-8 flex justify-center items-center gap-8 w-full">
                     <div className="w-full">
-                        <label htmlFor="inputDate" className="font-bold">Date</label><br />
+                        <label htmlFor="inputDate" className="font-bold">Date and Time</label><br />
                         <select id="inputDate" className="px-4 py-3 mt-2 w-full bg-gray-200 rounded-lg cursor-not-allowed" name="priority" disabled>
-                            <option value="">Today</option>
+                            <option value="">Current</option>
                         </select>
                     </div>
 
                     <div className="w-full">
                         <label htmlFor="inputPriority" className="font-bold">Priority</label><br />
-                        <select id="inputPriority" className="px-4 py-3 mt-2 w-full bg-gray-200 rounded-lg" name="priority">
+                        <select id="inputPriority" className="px-4 py-3 mt-2 w-full bg-gray-200 rounded-lg" name="priority" value={priority} onChange={(e) => setPriority(e.target.value)}>
                             <option value="">-- Select --</option>
                             <option value="low">Low</option>
                             <option value="medium">Medium</option>

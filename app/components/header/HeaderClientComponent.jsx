@@ -6,7 +6,7 @@ import HeaderSettings from "./HeaderSettings";
 import HeaderUnauthNavItems from "./HeaderUnauthNavItems";
 
 export default function HeaderClientComponent() {
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(true);
 
     return (
         <>
