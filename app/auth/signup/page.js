@@ -1,0 +1,28 @@
+import SignupForm from "@/app/components/auth/signup/SignupForm";
+import Link from "next/link";
+
+export default async function Signup() {
+    return (
+        <div className="h-screen flex justify-center items-center mx-auto">
+            <div className="bg-slate-100 p-8 rounded-lg w-120">
+                <section>
+                    <h1 className="text-3xl font-bold text-center">Task Spark</h1>
+                    <p className="text-center">Create a new account to sync your tasks.</p>
+                </section>
+
+                <section>
+                    <SignupForm />
+                </section>
+
+                <section className="border-t border-gray-200 mt-4">
+                    <div className="mt-4">
+                        <p className="text-center space-x-2">
+                            <span>Already have an account?</span>
+                            <Link href="/auth/signin" className="font-bold text-blue-500">Sign in</Link>
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    );
+}
