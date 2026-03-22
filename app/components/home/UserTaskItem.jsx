@@ -44,7 +44,7 @@ export default function UserTaskItem({id, completed, title, description, priorit
                         <h2 className={`text-xl font-bold ${completed && `line-through text-gray-500`}`}>{title}</h2>
                     </header>
 
-                    <p>{description}</p>
+                    <p className={completed ? `text-gray-500` : ``}>{description}</p>
                 </div>
 
                 <div className={`border p-2 rounded-lg text-xs ${priorityColorScheme}`}>{priority}</div>
