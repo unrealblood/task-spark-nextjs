@@ -37,24 +37,45 @@ export default function SigninForm() {
             return;
         }
 
-        signInWithEmailAndPassword(firebaseAuth, email, password)
-        .then((userCredential) => {
+        try {
+            // STEP 1: Await the Firebase authentication
+            const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
             const user = userCredential.user;
 
-            if(user) {
-                setIsLoading(false);
+            setReactionMessageType("success");
+            setReactionMessage("Signed in successfully.");
 
-                setReactionMessageType("success");
-                setReactionMessage("Signed in successfully.");
+            // STEP 2: Await the token generation (added parentheses)
+            const token = await user.getIdToken();
 
-                router.push("/");
+            // STEP 3: Proceed with the fetch call using the awaited token
+            const response = await fetch("/api/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` 
+                }
+            });
+
+            const result = await response.json();
+            
+            if (result.error) {
+                setReactionMessageType("error");
+                setReactionMessage(result.error);
+
+                return;
             }
-        })
-        .catch((error) => {
-            setIsLoading(false);
+
+            router.push("/");
+
+        } catch (error) {
+            // STEP 4: Handle any errors from Firebase or Fetch centrally
             setReactionMessageType("error");
             setReactionMessage(error.message);
-        });
+        } finally {
+            // STEP 5: Guarantee loading state is cleared whether it succeeds or fails
+            setIsLoading(false);
+        }
     }
 
     return (
