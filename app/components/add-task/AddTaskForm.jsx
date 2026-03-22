@@ -22,7 +22,7 @@ export default function AddTaskForm() {
                 description,
                 priority,
                 completed: false,
-                date: Date.now()
+                date: (new Date()).toISOString()
             }));
         }
     }, [state]);
