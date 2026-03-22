@@ -12,7 +12,17 @@ export default function SignoutComponent() {
     async function handleSignout() {
         await signOut(firebaseAuth);
 
-        router.push("/auth/signin");
+        const response = await fetch("/api/signout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if(response.ok) {
+            router.push("/auth/signin");
+            router.refresh();
+        }
     }
 
     return (
