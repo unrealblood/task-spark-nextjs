@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function Progress() {
+export default async function About() {
     return (
         <div className="min-h-screen border-l border-gray-200 w-full">
             <header className="border-b border-gray-200 py-4 px-8">

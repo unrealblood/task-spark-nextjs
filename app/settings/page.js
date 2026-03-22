@@ -1,6 +1,6 @@
-import Link from "next/link";
+import SignoutComponent from "../components/settings/SignoutComponent";
 
-export default async function Progress() {
+export default async function Settings() {
     return (
         <div className="min-h-screen border-l border-gray-200 w-full">
             <header className="border-b border-gray-200 py-4 px-8">
@@ -25,6 +25,8 @@ export default async function Progress() {
                     </div>
                 </div>
             </section>
+
+            <SignoutComponent />
         </div>
     );
 }

@@ -2,6 +2,7 @@
 
 import { app } from "@/lib/firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignupForm() {
@@ -14,6 +15,8 @@ export default function SignupForm() {
     const [isLoading, setIsLoading] = useState(false);
 
     const firebaseAuth = getAuth(app);
+
+    const router = useRouter();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -61,6 +64,8 @@ export default function SignupForm() {
 
                 setReactionMessageType("success");
                 setReactionMessage("Successfully signed up. You can now login.");
+
+                router.push("/");
             }
         })
         .catch((error) => {
