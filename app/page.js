@@ -3,7 +3,7 @@ import UserTasksProvider from "./components/home/UserTasksProvider";
 
 export default async function Home() {
   return (
-    <div className="min-h-screen border-l border-gray-200 w-full">
+    <div className="h-screen overflow-y-auto border-l border-gray-200 w-full">
       <header className="flex justify-between items-center border-b border-gray-200 py-4 px-8">
         <h1 className="text-3xl font-bold">
           My Tasks
