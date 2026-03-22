@@ -12,7 +12,7 @@ export default function AddTaskForm() {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [priority, setPriority] = useState("Normal");
+    const [priority, setPriority] = useState("Medium");
 
     useEffect(() => {
         if(state.success) {
@@ -50,9 +50,9 @@ export default function AddTaskForm() {
                         <label htmlFor="inputPriority" className="font-bold">Priority</label><br />
                         <select id="inputPriority" className="px-4 py-3 mt-2 w-full bg-gray-200 rounded-lg" name="priority" value={priority} onChange={(e) => setPriority(e.target.value)}>
                             <option value="">-- Select --</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
                         </select>
                     </div>
                 </div>
