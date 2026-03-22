@@ -9,22 +9,65 @@ export default function SignupForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [reactionMessageType, setReactionMessageType] = useState("error");
+    const [reactionMessage, setReactionMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const firebaseAuth = getAuth(app);
 
     async function handleSubmit(e) {
         e.preventDefault();
+        
+        setIsLoading(true);
+
+        if(!email || email.trim().length === 0) {
+            setIsLoading(false);
+
+            setReactionMessageType("error");
+            setReactionMessage("Please enter your email address.");
+            return;
+        }
+
+        if(!password || password.trim().length === 0) {
+            setIsLoading(false);
+
+            setReactionMessageType("error");
+            setReactionMessage("Please enter your password.");
+            return;
+        }
+
+        if(!confirmPassword || confirmPassword.trim().length === 0) {
+            setIsLoading(false);
+
+            setReactionMessageType("error");
+            setReactionMessage("Please confirm your password.");
+            return;
+        }
+
+        if(password !== confirmPassword) {
+            setIsLoading(false);
+
+            setReactionMessageType("error");
+            setReactionMessage("Passwords do not match.");
+            return;
+        }
 
         createUserWithEmailAndPassword(firebaseAuth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             
             if(user) {
-                console.log("User successfully signed up. You can now login.");
+                setIsLoading(false);
+
+                setReactionMessageType("success");
+                setReactionMessage("Successfully signed up. You can now login.");
             }
         })
         .catch((error) => {
-            console.log(error.message);
+            setIsLoading(false);
+
+            setReactionMessageType("error");
+            setReactionMessage(error.message);
         });
     }
 
@@ -53,8 +96,14 @@ export default function SignupForm() {
                     <input type="password" id="inputConfirmPassword" name="confirmPassword" placeholder="Enter your email address" className="bg-gray-200 p-2 rounded-lg w-full" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
 
+                {reactionMessage !== ""
+                &&
+                <div className={`text-center ${reactionMessageType === "error" ? `text-red-500` : `text-green-500`}`}>
+                    <p>{reactionMessage}</p>
+                </div>}
+
                 <div className="flex justify-start items-start flex-col gap-1 w-full">
-                    <button type="submit" className="bg-blue-500 rounded-lg text-white py-2 w-full cursor-pointer">Create Account</button>
+                    <button type="submit" className={`${isLoading ? `bg-gray-200 text-black` : `bg-blue-500 text-white`} rounded-lg py-2 w-full cursor-pointer`}>{isLoading ? "Loading..." : "Create Account"}</button>
                 </div>
             </form>
         </div>
