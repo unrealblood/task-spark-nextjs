@@ -14,10 +14,6 @@ export const taskSlice = createSlice({
             state.tasks.push(action.payload);
         },
 
-        deleteTask: (state = initialState, action) => {
-            state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-        },
-
         toggleCompleted: (state = initialState, action) => {
             const task = state.tasks.find((task) => task.id === action.payload);
             

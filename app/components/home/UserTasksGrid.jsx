@@ -61,19 +61,17 @@ export default function UserTasksGrid() {
                 tasks.length > 0
                 ?
                 <div>
-                    <div>
-                        {groupedTasksArray.map((group, index) => (
-                        <div key={index} className="flex justify-start items-start flex-col gap-4 mt-8">
-                            <h2 className="text-xl text-gray-500 p-2">{group.title.toUpperCase()}</h2>
+                    {groupedTasksArray.map((group, index) => (
+                    <div key={index} className="flex justify-start items-start flex-col gap-2 mt-8">
+                        <h2 className="text-xl text-gray-500 py-2">{group.title.toUpperCase()}</h2>
 
-                            <div className="flex justify-start items-start flex-col gap-6 w-full">
-                                {group.tasks.map((task, index) => (
-                                    <UserTaskItem key={index} {...task} />
-                                ))}
-                            </div>
+                        <div className="flex justify-start items-start flex-col gap-6 w-full">
+                            {group.tasks.map((task, index) => (
+                                <UserTaskItem key={index} {...task} />
+                            ))}
                         </div>
-                    ))}
                     </div>
+                ))}
                 </div>
                 :
                 <p className="mt-4 ml-4">No tasks found. Maybe add one!</p>

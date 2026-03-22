@@ -33,7 +33,7 @@ export default function UserTaskItem({id, completed, title, description, priorit
     }
 
     return (
-        <article className={`border border-gray-200 p-4 rounded-lg flex justify-start items-start gap-4 ${completed && `bg-slate-100`} w-full`}>
+        <article className={`border border-gray-200 p-6 rounded-lg flex justify-start items-start gap-4 ${completed && `bg-slate-100`} w-full`}>
             <div className="p-2">
                 <input type="checkbox" className="scale-180" onChange={handleTaskCompletedToggle} checked={taskCompleted} />
             </div>
@@ -47,12 +47,8 @@ export default function UserTaskItem({id, completed, title, description, priorit
                     <p className={completed ? `text-gray-500` : ``}>{description}</p>
                 </div>
 
-                <div className={`border p-3 rounded-lg text-xs ${priorityColorScheme}`}>{priority}</div>
+                <div className={`border p-2 rounded-lg text-xs ${priorityColorScheme}`}>{priority}</div>
             </div>
-
-            <button type="button" className="bg-red-500/10 text-red-500 p-2 rounded-lg cursor-pointer">
-                <span className="text-xl bi-trash" />
-            </button>
         </article>
     );
 }
