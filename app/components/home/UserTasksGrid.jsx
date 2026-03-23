@@ -1,9 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import UserTaskItem from "./UserTaskItem";
 import { getDateLabel } from "@/util/task";
+import { setTasks } from "@/app/redux/slices/taskSlice";
 
-export default function UserTasksGrid() {
-    const tasks = useSelector(state => state.tasks.tasks);
+export default function UserTasksGrid({tasks}) {
+    useDispatch(setTasks(tasks));
 
     const groupedTask = tasks.reduce((accumulator, currentTask) => {
         // 1. Get the label for the current task
@@ -28,6 +29,7 @@ export default function UserTasksGrid() {
         };
     });
 
+    /*
     groupedTasksArray.sort((groupA, groupB) => {
         // Helper function to convert our text labels back into comparable numbers
         const getTimestamp = (label) => {
@@ -54,6 +56,7 @@ export default function UserTasksGrid() {
         // Sort descending (b - a) puts the newest/largest timestamps at the top
         return timeB - timeA; 
     });
+    */
 
     return (
         <div className="m-8">
