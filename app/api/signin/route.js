@@ -10,6 +10,8 @@ export async function POST(request) {
         const authHeader = request.headers.get('Authorization');
         const idToken = authHeader?.split('Bearer ')[1];
 
+        const { userId } = await request.json();
+
         if (!idToken) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
@@ -29,7 +31,14 @@ export async function POST(request) {
             httpOnly: true,
             secure: true,
             path: '/',
-            sameSite: 'lax',
+            sameSite: 'lax'
+        });
+        (await cookies()).set("userId", userId, {
+            maxAge: expiresIn,
+            httpOnly: true,
+            secure: true,
+            path: '/',
+            sameSite: 'lax'
         });
 
         return NextResponse.json({ status: 'success' }, { status: 200 });

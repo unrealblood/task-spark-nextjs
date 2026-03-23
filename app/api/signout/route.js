@@ -5,6 +5,7 @@ export async function POST() {
   try {
     // 1. Tell Next.js to delete the session cookie
     (await cookies()).delete('session');
+    (await cookies()).delete('userId');
 
     // Note: You can optionally use the Firebase Admin SDK here to completely 
     // revoke the user's refresh tokens if you want strict security, 

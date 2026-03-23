@@ -54,7 +54,8 @@ export default function SigninForm() {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}` 
-                }
+                },
+                body: JSON.stringify({userId: user.uid})
             });
 
             const result = await response.json();
