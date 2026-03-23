@@ -2,11 +2,13 @@
 
 import { addTaskAction } from "@/actions/task";
 import { addTask } from "@/app/redux/slices/taskSlice";
+import { app } from "@/lib/firebase/app";
+import { getAuth } from "firebase/auth";
 import { useActionState, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function AddTaskForm() {
-    const [state, formAction, isPending] = useActionState(addTaskAction, {success: false, errors: [], message: ""});
+    const [state, formAction, isPending] = useActionState(customAction, {success: false, errors: [], message: ""});
 
     const dispatch = useDispatch();
 
@@ -26,6 +28,15 @@ export default function AddTaskForm() {
             }));
         }
     }, [state]);
+
+    async function customAction(prevState, formData) {
+        const firebaseAuth = getAuth(app);
+        let userId = firebaseAuth.currentUser.uid;
+        
+        formData.append("userId", userId);
+
+        return await addTaskAction(prevState, formData);
+    }
 
     return (
         <div className="bg-slate-100 m-8 w-250 p-8 rounded-lg">
