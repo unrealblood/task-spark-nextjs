@@ -11,7 +11,7 @@ export default async function Home() {
 
   const tasksRef = db.collection("users").doc(userId).collection("tasks");
   const snapshot = await tasksRef.orderBy("date", "desc").get();
-  const tasks = await snapshot.docs.map((doc) => ({
+  const tasks = snapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data()
   }));

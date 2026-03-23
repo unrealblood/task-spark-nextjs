@@ -1,12 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserTaskItem from "./UserTaskItem";
 import { getDateLabel } from "@/util/task";
 import { setTasks } from "@/app/redux/slices/taskSlice";
+import { useEffect } from "react";
 
 export default function UserTasksGrid({tasks}) {
-    useDispatch(setTasks(tasks));
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setTasks(tasks));
+    }, [tasks]);
 
-    const groupedTask = tasks.reduce((accumulator, currentTask) => {
+    const userTasks = useSelector(state => state.tasks.tasks);
+
+    const groupedTask = userTasks.reduce((accumulator, currentTask) => {
         // 1. Get the label for the current task
         const groupLabel = getDateLabel(currentTask.date);
 
@@ -61,7 +67,7 @@ export default function UserTasksGrid({tasks}) {
     return (
         <div className="m-8">
             {
-                tasks.length > 0
+                userTasks.length > 0
                 ?
                 <div>
                     {groupedTasksArray.map((group, index) => (

@@ -1,6 +1,10 @@
 import { toggleCompleted } from "@/app/redux/slices/taskSlice";
+import { app } from "@/lib/firebase/app";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { refreshHomePage } from "@/actions/task";
 
 export default function UserTaskItem({id, completed, title, description, priority}) {
     let priorityColorScheme = "";
@@ -26,16 +30,31 @@ export default function UserTaskItem({id, completed, title, description, priorit
 
     const [taskCompleted, setTaskCompleted] = useState(completed);
 
-    function handleTaskCompletedToggle() {
+    async function handleTaskCompletedToggle() {
         setTaskCompleted(!taskCompleted);
 
         dispatch(toggleCompleted(id));
+
+        const firebaseApp = app;
+        const firebaseAuth = getAuth(firebaseApp)
+        const db = getFirestore(firebaseApp);
+
+        const userId = firebaseAuth.currentUser.uid;
+
+        // 1. Create a reference to the exact document in Firestore
+        // Path: users -> [userId] -> tasks -> [id]
+        const taskDocRef = doc(db, "users", userId, "tasks", id);
+
+        // 2. Update the document in Firestore
+        await updateDoc(taskDocRef, {
+            completed: !taskCompleted
+        });
     }
 
     return (
         <article className={`border border-gray-200 p-6 rounded-lg flex justify-start items-start gap-4 ${completed && `bg-slate-100`} w-full`}>
             <div className="p-2">
-                <input type="checkbox" className="scale-180" onChange={handleTaskCompletedToggle} checked={taskCompleted} />
+                <input type="checkbox" className="scale-180" onChange={handleTaskCompletedToggle} checked={completed} />
             </div>
 
             <div className="flex justify-between items-start w-full">

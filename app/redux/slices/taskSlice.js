@@ -6,16 +6,16 @@ export const taskSlice = createSlice({
         tasks: []
     },
     reducers: {
-        setTasks: (state = initialState, action) => {
+        setTasks: (state, action) => {
             state.tasks = action.payload;
         },
 
-        addTask: (state = initialState, action) => {
+        addTask: (state, action) => {
             state.tasks.push(action.payload);
         },
 
-        toggleCompleted: (state = initialState, action) => {
-            const task = state.tasks.find((task) => task.id === action.payload);
+        toggleCompleted: (state, action) => {
+            const task = state.tasks.find((task) => task.id.toString() === action.payload);
             
             if(task) {
                 task.completed = !task.completed;
@@ -24,4 +24,4 @@ export const taskSlice = createSlice({
     }
 });
 
-export const { setTasks, addTask, deleteTask, toggleCompleted } = taskSlice.actions;
+export const { setTasks, addTask, toggleCompleted } = taskSlice.actions;
