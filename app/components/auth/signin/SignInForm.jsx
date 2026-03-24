@@ -67,7 +67,9 @@ export default function SigninForm() {
                 return;
             }
 
-            router.push("/");
+            if(response.ok) {
+                router.push("/");
+            }
 
         } catch (error) {
             // STEP 4: Handle any errors from Firebase or Fetch centrally
