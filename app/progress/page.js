@@ -28,12 +28,6 @@ export default async function Progress() {
             </header>
 
             <section className="m-8">
-                {/*
-                <div className="border border-gray-200 rounded-lg p-4 w-100 h-80">
-                    
-                </div>
-                */}
-
                 <SvgProgressRing completedTasks={completedTasks} totalTasks={totalTasks} />
             </section>
         </div>
