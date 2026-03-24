@@ -44,3 +44,13 @@ export function getTodayCompletedCount(tasksArray) {
   // 3. Return the count
   return todaysCompletedTasks.length;
 }
+
+export function getTotalPendingTasks(tasksArray) {
+  // 2. Filter for tasks that are both completed AND have today's date
+  const pendingTasks = tasksArray.filter(task => {
+    return task.completed === false;
+  });
+
+  // 3. Return the count
+  return pendingTasks.length;
+}

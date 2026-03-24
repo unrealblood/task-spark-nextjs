@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import SvgProgressRing from "../components/progress/SvgProgressRing";
 import { getFirestore } from "firebase-admin/firestore";
 import { app } from "@/lib/firebase/admin-app";
-import { getTodayCompletedCount, getTodayTotalTasksCount } from "@/util/task";
+import { getTodayCompletedCount, getTodayTotalTasksCount, getTotalPendingTasks } from "@/util/task";
 
 export default async function Progress() {
     const userId = (await cookies()).get("userId")?.value;
@@ -16,7 +16,9 @@ export default async function Progress() {
     ...doc.data()
     }));
 
-    const totalTasks = getTodayTotalTasksCount(tasks);
+    const totalTasks = tasks.length;
+    const totalTasksPending = getTotalPendingTasks(tasks);
+    const totalTasksToday = getTodayTotalTasksCount(tasks);
     const completedTasks = getTodayCompletedCount(tasks);
 
     return (
@@ -27,8 +29,32 @@ export default async function Progress() {
                 </h1>
             </header>
 
-            <section className="m-8">
-                <SvgProgressRing completedTasks={completedTasks} totalTasks={totalTasks} />
+            <section className="m-8 flex justify-start items-start gap-8">
+                <SvgProgressRing completedTasks={completedTasks} totalTasks={totalTasksToday} />
+
+                <div className="flex justify-start items-start gap-8">
+                    <div className="border border-gray-200 p-4 w-50 h-40 rounded-lg flex justify-center items-center">
+                        <div className="w-10 h-10 bg-gray-200 flex justify-center items-center text-3xl rounded-lg m-4">
+                            <span className="bi-check" />
+                        </div>
+
+                        <header>
+                            <h3>Total <br/ >Completed</h3>
+                            <p className="text-4xl">{totalTasks}</p>
+                        </header>
+                    </div>
+
+                    <div className="border border-gray-200 p-4 w-50 h-40 rounded-lg flex justify-center items-center">
+                        <div className="w-10 h-10 bg-gray-200 flex justify-center items-center text-2xl rounded-lg m-4">
+                            <span className="bi-graph-up" />
+                        </div>
+
+                        <header>
+                            <h3>Pending</h3>
+                            <p className="text-4xl">{totalTasksPending}</p>
+                        </header>
+                    </div>
+                </div>
             </section>
         </div>
     );
