@@ -2,7 +2,6 @@
 
 import { app } from "@/lib/firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SigninForm() {
@@ -13,8 +12,6 @@ export default function SigninForm() {
     const [isLoading, setIsLoading] = useState(false);
 
     const firebaseAuth = getAuth(app);
-
-    const router = useRouter();
 
     async function handleSubmit(e) {
         e.preventDefault();
