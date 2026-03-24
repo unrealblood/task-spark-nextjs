@@ -67,8 +67,9 @@ export default function SigninForm() {
                 return;
             }
 
-            if(response.status === 200) {
+            if(response.ok) {
                 router.push("/");
+                router.refresh();
             }
 
         } catch (error) {
