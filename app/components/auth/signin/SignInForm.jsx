@@ -68,8 +68,8 @@ export default function SigninForm() {
             }
 
             if(response.ok) {
-                router.push("/");
-                router.refresh();
+                //router.push("/");
+                document.location.href = "/";
             }
 
         } catch (error) {
