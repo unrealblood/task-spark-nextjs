@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default async function Signup() {
     return (
-        <div className="h-screen flex justify-center items-center mx-auto">
+        <div className="h-screen overflow-y-auto border-l border-gray-200 w-full flex justify-center items-center">
             <div className="bg-slate-100 p-8 rounded-lg w-120">
                 <section>
                     <h1 className="text-3xl font-bold text-center">Task Spark</h1>
