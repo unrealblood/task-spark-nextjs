@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import SvgProgressRing from "../components/progress/SvgProgressRing";
 import { getFirestore } from "firebase-admin/firestore";
 import { app } from "@/lib/firebase/admin-app";
-import { getTodayCompletedCount, getTodayTotalTasksCount, getTotalPendingTasks } from "@/util/task";
+import { getAllTotalCompletedTasks, getTodayCompletedCount, getTodayTotalTasksCount, getTotalPendingTasks } from "@/util/task";
 
 export default async function Progress() {
     const userId = (await cookies()).get("userId")?.value;
@@ -16,7 +16,7 @@ export default async function Progress() {
     ...doc.data()
     }));
 
-    const totalTasks = tasks.length;
+    const allTotalTasksCompleted = getAllTotalCompletedTasks(tasks);
     const totalTasksPending = getTotalPendingTasks(tasks);
     const totalTasksToday = getTodayTotalTasksCount(tasks);
     const completedTasks = getTodayCompletedCount(tasks);
@@ -40,7 +40,7 @@ export default async function Progress() {
 
                         <header>
                             <h3>Total <br/ >Completed</h3>
-                            <p className="text-4xl">{totalTasks}</p>
+                            <p className="text-4xl">{allTotalTasksCompleted}</p>
                         </header>
                     </div>
 
