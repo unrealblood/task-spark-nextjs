@@ -1,6 +1,6 @@
 # Task Spark (Next.js + Firebase)
 
-Task Spark is simply a todo web app which increases the productivity of a user by allowing the user to add multiple daily tasks, edit them, mark them as completed, delete tasks, etc.
+Task Demon is simply a todo web app which increases the productivity of a user by allowing the user to add multiple daily tasks, edit them, mark them as completed, etc.
 
 ## Technologies used in this project are:
 - React

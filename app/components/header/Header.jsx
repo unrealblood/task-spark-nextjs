@@ -10,7 +10,7 @@ export default async function Header() {
                     <div className="w-auto h-auto">
                         <Image src="https://res.cloudinary.com/diehhord1/image/upload/v1774337831/task_spark_MAUI_app_icon_lsk0kt.png" width={50} height={50} priority alt="task-spark-logo" />
                     </div>
-                    <h1>Task Spark</h1>
+                    <h1>Task Demon</h1>
                 </Link>
             </h1>
             

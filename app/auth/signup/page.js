@@ -6,7 +6,7 @@ export default async function Signup() {
         <div className="h-screen overflow-y-auto border-l border-gray-200 w-full flex justify-center items-center">
             <div className="bg-slate-100 p-8 rounded-lg w-120">
                 <section>
-                    <h1 className="text-3xl font-bold text-center">Task Spark</h1>
+                    <h1 className="text-3xl font-bold text-center">Task Demon</h1>
                     <p className="text-center">Create a new account to sync your tasks.</p>
                 </section>
 

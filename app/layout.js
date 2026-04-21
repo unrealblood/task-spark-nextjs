@@ -2,7 +2,7 @@ import Header from "./components/header/Header";
 import "./globals.css";
 
 export const metadata = {
-  title: "Task Spark",
+  title: "Task Demon",
   description: "This is a todo web application.",
 };
 
